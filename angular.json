@@ -172,6 +172,31 @@
           }
         }
       }
+    },
+    "carts": {
+      "projectType": "library",
+      "root": "libs/carts",
+      "sourceRoot": "libs/carts/src",
+      "prefix": "tul",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/carts/src/**/*.ts",
+              "libs/carts/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/carts"],
+          "options": {
+            "jestConfig": "libs/carts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

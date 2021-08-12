@@ -19,6 +19,7 @@
     "ecommerce": { "tags": [] },
     "ecommerce-e2e": { "tags": [], "implicitDependencies": ["ecommerce"] },
     "auth": { "tags": [] },
-    "products": { "tags": [] }
+    "products": { "tags": [] },
+    "carts": { "tags": [] }
   }
 }
