@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/auth',
     '<rootDir>/libs/products',
     '<rootDir>/libs/carts',
+    '<rootDir>/libs/items',
   ],
 };

@@ -17,7 +17,8 @@
     "paths": {
       "@tul/auth": ["libs/auth/src/index.ts"],
       "@tul/products": ["libs/products/src/index.ts"],
-      "@tul/carts": ["libs/carts/src/index.ts"]
+      "@tul/carts": ["libs/carts/src/index.ts"],
+      "@tul/items": ["libs/items/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

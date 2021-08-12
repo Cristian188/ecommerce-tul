@@ -197,6 +197,31 @@
           }
         }
       }
+    },
+    "items": {
+      "projectType": "library",
+      "root": "libs/items",
+      "sourceRoot": "libs/items/src",
+      "prefix": "tul",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/items/src/**/*.ts",
+              "libs/items/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/items"],
+          "options": {
+            "jestConfig": "libs/items/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
