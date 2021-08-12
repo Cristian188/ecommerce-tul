@@ -1,14 +1,14 @@
 {
-  "version": 2,
+  "version": 1,
   "projects": {
     "ecommerce": {
       "projectType": "application",
       "root": "apps/ecommerce",
       "sourceRoot": "apps/ecommerce/src",
       "prefix": "tul",
-      "targets": {
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/ecommerce",
             "index": "apps/ecommerce/src/index.html",
@@ -20,9 +20,7 @@
               "apps/ecommerce/src/favicon.ico",
               "apps/ecommerce/src/assets"
             ],
-            "styles": [
-              "apps/ecommerce/src/styles.scss"
-            ],
+            "styles": ["apps/ecommerce/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -56,7 +54,7 @@
           }
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "ecommerce:build"
           },
@@ -67,13 +65,13 @@
           }
         },
         "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "ecommerce:build"
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/ecommerce/src/**/*.ts",
@@ -82,10 +80,8 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/ecommerce"
-          ],
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ecommerce"],
           "options": {
             "jestConfig": "apps/ecommerce/jest.config.js",
             "passWithNoTests": true
@@ -97,9 +93,9 @@
       "root": "apps/ecommerce-e2e",
       "sourceRoot": "apps/ecommerce-e2e/src",
       "projectType": "application",
-      "targets": {
+      "architect": {
         "e2e": {
-          "executor": "@nrwl/cypress:cypress",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/ecommerce-e2e/cypress.json",
             "tsConfig": "apps/ecommerce-e2e/tsconfig.e2e.json",
@@ -112,11 +108,34 @@
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ecommerce-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "tul",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/ecommerce-e2e/**/*.{js,ts}"
+              "libs/auth/src/**/*.ts",
+              "libs/auth/src/**/*.html"
             ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth"],
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -125,7 +144,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "generators": {
+  "schematics": {
     "@nrwl/angular:application": {
       "style": "scss",
       "linter": "eslint",

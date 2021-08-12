@@ -17,6 +17,7 @@
   },
   "projects": {
     "ecommerce": { "tags": [] },
-    "ecommerce-e2e": { "tags": [], "implicitDependencies": ["ecommerce"] }
+    "ecommerce-e2e": { "tags": [], "implicitDependencies": ["ecommerce"] },
+    "auth": { "tags": [] }
   }
 }
