@@ -20,6 +20,10 @@
         <i nz-icon nzType="user-add"></i>
         <a routerLink="/register">Register</a>
       </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="logout"></i>
+        <a (click)="onLogOutClick()">Log out</a>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>
