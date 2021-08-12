@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tul/auth": ["libs/auth/src/index.ts"]
+      "@tul/auth": ["libs/auth/src/index.ts"],
+      "@tul/products": ["libs/products/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
