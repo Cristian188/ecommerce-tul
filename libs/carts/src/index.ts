@@ -1,4 +1,5 @@
-export * from './lib/+state/carts/carts.actions';
+import * as CartActions from './lib/+state/carts/carts.actions';
+export { CartActions };
 export * from './lib/+state/carts/carts.reducer';
 export * from './lib/+state/carts/carts.selectors';
 export * from './lib/+state/carts/carts.models';

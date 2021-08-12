@@ -1,14 +1,23 @@
 import { createAction, props } from '@ngrx/store';
-import { CartsEntity } from './carts.models';
+import { Cart } from './carts.models';
 
-export const init = createAction('[Carts Page] Init');
+export const loadCart = createAction('[Cart Page] Load Cart');
 
-export const loadCartsSuccess = createAction(
-  '[Carts/API] Load Carts Success',
-  props<{ carts: CartsEntity[] }>()
+export const loadCartSuccess = createAction(
+  '[Cart/API] Load Cart Success',
+  props<{ cart: Cart }>()
 );
 
-export const loadCartsFailure = createAction(
-  '[Carts/API] Load Carts Failure',
+export const loadCartFailure = createAction(
+  '[Cart/API] Load Cart Failure',
+  props<{ error: any }>()
+);
+
+export const checkoutCart = createAction('[Cart/API] Checkout');
+
+export const checkoutCartSuccess = createAction('[Cart Page] Checkout Success');
+
+export const checkoutCartFailure = createAction(
+  '[Cart Page] Checkout Failure',
   props<{ error: any }>()
 );

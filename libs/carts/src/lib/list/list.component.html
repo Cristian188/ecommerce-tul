@@ -1,0 +1,43 @@
+<nz-table #basicTable [nzData]="items$ | async">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <ng-container *ngIf="getProduct(data.productId) | async as product">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+      </ng-container>
+      <td>
+        <nz-select
+          [ngModel]="data.quantity"
+          (ngModelChange)="onQuantityChange(data.id, $event)"
+        >
+          <nz-option
+            *ngFor="let option of quantityOptions"
+            [nzValue]="option.value"
+            [nzLabel]="option.label"
+          ></nz-option>
+        </nz-select>
+      </td>
+      <td>
+        <a nz-typography nzType="danger" (click)="onDeleteClick(data.id)"
+          >Delete</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<button
+  nz-button
+  nzType="primary"
+  *ngIf="(countItems$ | async) > 0"
+  (click)="onCheckoutClick()"
+>
+  Checkout
+</button>
