@@ -1,0 +1,19 @@
+:host {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+[nz-form] {
+  max-width: 600px;
+  width: 100%;
+}
+
+.phone-select {
+  width: 70px;
+}
+
+.register-are {
+  margin-bottom: 8px;
+}

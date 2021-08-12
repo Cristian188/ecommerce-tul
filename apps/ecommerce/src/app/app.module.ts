@@ -25,7 +25,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { nzConfigFactory } from './shared/nz-zorro/global-templates.component';
 import { IconsProviderModule } from './shared/nz-zorro/icons/icons-provider.module';
-
+import { AuthModule } from '@tul/auth';
+import { AppRoutingModule } from './app-routing.module';
 registerLocaleData(en);
 
 const NZ_MODULES = [
@@ -41,7 +42,7 @@ const NZ_MODULES = [
   imports: [
     ...NZ_MODULES,
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    AppRoutingModule,
     StoreModule.forRoot(
       {},
       {
@@ -62,6 +63,7 @@ const NZ_MODULES = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AuthModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

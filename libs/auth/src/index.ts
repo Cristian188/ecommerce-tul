@@ -1,6 +1,7 @@
-export * from './lib/+state/auth/auth.actions';
-export * from './lib/+state/auth/auth.reducer';
-export * from './lib/+state/auth/auth.selectors';
-export * from './lib/+state/auth/auth.models';
-export * from './lib/+state/auth/auth.facade';
-export * from './lib/auth.module';
+import * as AuthActions from './lib/+state/auth.actions';
+import * as AuthReducers from './lib/+state/auth.reducer';
+import * as AuthSelectors from './lib/+state/auth.selectors';
+export { AuthActions, AuthReducers, AuthSelectors };
+export * from './lib/+state/auth.models';
+export * from './lib/+state/auth.facade';
+export { AuthModule } from './lib/auth.module';
