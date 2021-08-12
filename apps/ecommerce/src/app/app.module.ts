@@ -1,17 +1,42 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import en from '@angular/common/locales/en';
+import { ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NZ_CONFIG } from 'ng-zorro-antd/core/config';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { nzConfigFactory } from './shared/nz-zorro/global-templates.component';
+import { IconsProviderModule } from './shared/nz-zorro/icons/icons-provider.module';
 
+registerLocaleData(en);
+
+const NZ_MODULES = [
+  NzLayoutModule,
+  NzMenuModule,
+  NzSpinModule,
+  NzSliderModule,
+  NzBreadCrumbModule,
+  NzImageModule,
+];
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    ...NZ_MODULES,
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
     StoreModule.forRoot(
@@ -27,8 +52,19 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    IconsProviderModule,
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: NZ_CONFIG,
+      useFactory: nzConfigFactory,
+      deps: [Injector, ComponentFactoryResolver],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -43,6 +43,7 @@
     "@ngrx/router-store": "^11.0.0",
     "@ngrx/store": "^11.0.0",
     "firebase": "^8.9.1",
+    "ng-zorro-antd": "^11.4.2",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "^0.10.2"

@@ -18,9 +18,17 @@
             "aot": true,
             "assets": [
               "apps/ecommerce/src/favicon.ico",
-              "apps/ecommerce/src/assets"
+              "apps/ecommerce/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
-            "styles": ["apps/ecommerce/src/styles.scss"],
+            "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "apps/ecommerce/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
