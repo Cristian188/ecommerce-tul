@@ -1,0 +1,24 @@
+<nz-card nzHoverable style="width: 240px" [nzCover]="coverTemplate">
+  <nz-card-meta
+    [nzTitle]="data?.name"
+    [nzDescription]="data?.description"
+  ></nz-card-meta>
+  <nz-divider></nz-divider>
+  <div class="space-align-container">
+    <div nz-space nzAlign="center" class="space-align-block">
+      <b class="price" *nzSpaceItem>{{ data?.price | currency }}</b>
+      <button
+        nz-button
+        nzBlock
+        nzType="primary"
+        *nzSpaceItem
+        (click)="onAddToCartClick()"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</nz-card>
+<ng-template #coverTemplate>
+  <img alt="example" src="https://picsum.photos/536/354" />
+</ng-template>

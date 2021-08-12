@@ -1,44 +1,44 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import * as ProductActions from './products.actions';
+import { Product } from './products.models';
 
-import * as ProductsActions from './products.actions';
-import { ProductsEntity } from './products.models';
+export const PRODUCTS_FEATURE_KEY = 'product';
 
-export const PRODUCTS_FEATURE_KEY = 'products';
-
-export interface State extends EntityState<ProductsEntity> {
-  selectedId?: string | number; // which Products record has been selected
-  loaded: boolean; // has the Products list been loaded
+export interface State extends EntityState<Product> {
+  selectedId?: string | number; // which Product record has been selected
+  loaded: boolean; // has the Product list been loaded
   error?: string | null; // last known error (if any)
 }
 
-export interface ProductsPartialState {
+export interface ProductPartialState {
   readonly [PRODUCTS_FEATURE_KEY]: State;
 }
 
-export const productsAdapter: EntityAdapter<ProductsEntity> = createEntityAdapter<ProductsEntity>();
+export const productAdapter: EntityAdapter<Product> = createEntityAdapter<Product>();
 
-export const initialState: State = productsAdapter.getInitialState({
-  // set initial required properties
+export const initialState: State = productAdapter.getInitialState({
+  selectedId: null,
   loaded: false,
+  error: null,
 });
 
-const productsReducer = createReducer(
+const productReducer = createReducer(
   initialState,
-  on(ProductsActions.init, (state) => ({
+  on(ProductActions.loadProducts, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
-  on(ProductsActions.loadProductsSuccess, (state, { products }) =>
-    productsAdapter.setAll(products, { ...state, loaded: true })
+  on(ProductActions.loadProductsSuccess, (state, { products }) =>
+    productAdapter.setAll(products, { ...state, loaded: true })
   ),
-  on(ProductsActions.loadProductsFailure, (state, { error }) => ({
+  on(ProductActions.loadProductsFailure, (state, { error }) => ({
     ...state,
     error,
   }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
-  return productsReducer(state, action);
+  return productReducer(state, action);
 }

@@ -1,0 +1,18 @@
+<div
+  nz-row
+  nzJustify="space-around"
+  nzAlign="middle"
+  [nzGutter]="[
+    { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 },
+    { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }
+  ]"
+>
+  <div
+    nz-col
+    class="gutter-row"
+    [nzSpan]="24 / products$?.length"
+    *ngFor="let product of products$ | async"
+  >
+    <tul-product class="m-auto" [data]="product"></tul-product>
+  </div>
+</div>

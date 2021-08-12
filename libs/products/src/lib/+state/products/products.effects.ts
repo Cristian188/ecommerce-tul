@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-
-import * as ProductsFeature from './products.reducer';
-import * as ProductsActions from './products.actions';
-
+import { ProductsService } from '../../products.service';
+import * as ProductActions from './products.actions';
+import { of } from 'rxjs';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 @Injectable()
 export class ProductsEffects {
-  init$ = createEffect(() =>
+  loadProducts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProductsActions.init),
-      fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return ProductsActions.loadProductsSuccess({ products: [] });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return ProductsActions.loadProductsFailure({ error });
-        },
-      })
+      ofType(ProductActions.loadProducts),
+      exhaustMap(() =>
+        this.productService.getProducts().pipe(
+          map((products) => ProductActions.loadProductsSuccess({ products })),
+          catchError(() =>
+            of(
+              ProductActions.loadProductsFailure({
+                error: 'Unable to load products',
+              })
+            )
+          )
+        )
+      )
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private productService: ProductsService
+  ) {}
 }

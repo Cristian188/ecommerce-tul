@@ -1,18 +1,20 @@
+import { Dictionary } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Product } from './products.models';
 import {
   PRODUCTS_FEATURE_KEY,
   State,
-  ProductsPartialState,
-  productsAdapter,
+  ProductPartialState,
+  productAdapter,
 } from './products.reducer';
 
-// Lookup the 'Products' feature state managed by NgRx
+// Lookup the 'Product' feature state managed by NgRx
 export const getProductsState = createFeatureSelector<
-  ProductsPartialState,
+  ProductPartialState,
   State
 >(PRODUCTS_FEATURE_KEY);
 
-const { selectAll, selectEntities } = productsAdapter.getSelectors();
+const { selectAll, selectEntities } = productAdapter.getSelectors();
 
 export const getProductsLoaded = createSelector(
   getProductsState,
@@ -43,3 +45,8 @@ export const getSelected = createSelector(
   getSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
 );
+
+export const selectEntity = (props: { id: string }) =>
+  createSelector(getProductsEntities, (entities) => {
+    return entities[props.id];
+  });

@@ -18,11 +18,7 @@ export class ProductsFacade {
 
   constructor(private store: Store) {}
 
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
-  init() {
-    this.store.dispatch(ProductsActions.init());
+  loadAllProducts() {
+    this.store.dispatch(ProductsActions.loadProducts());
   }
 }
