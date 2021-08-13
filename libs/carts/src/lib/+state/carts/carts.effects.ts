@@ -6,7 +6,6 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ItemsActions } from '@tul/items';
-import { loadItems } from 'libs/items/src/lib/+state/items/items.actions';
 
 @Injectable()
 export class CartsEffects {

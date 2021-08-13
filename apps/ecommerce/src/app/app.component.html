@@ -4,23 +4,23 @@
       <img src="assets/images/logo-tul.png" width="82.67" height="31" alt="" />
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *showAuthed="true">
         <i nz-icon nzType="user"></i>
         <a routerLink="/shop">Shop</a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *showAuthed="true">
         <i nz-icon nzType="shopping-cart"></i>
         <a routerLink="/cart">Cart</a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *showAuthed="false">
         <i nz-icon nzType="login"></i>
         <a routerLink="/login">Login</a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *showAuthed="false">
         <i nz-icon nzType="user-add"></i>
         <a routerLink="/register">Register</a>
       </li>
-      <li nz-menu-item nzMatchRouter>
+      <li nz-menu-item nzMatchRouter *showAuthed="true">
         <i nz-icon nzType="logout"></i>
         <a (click)="onLogOutClick()">Log out</a>
       </li>

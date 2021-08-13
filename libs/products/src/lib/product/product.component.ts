@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '@tul/products';
-import { ProductsFacade } from '../+state/products/products.facade';
 
 @Component({
   selector: 'tul-product',
@@ -9,10 +8,11 @@ import { ProductsFacade } from '../+state/products/products.facade';
 })
 export class ProductComponent {
   @Input() data: Product;
+  @Output() addToCartEvent = new EventEmitter<Product>();
 
-  constructor(private productsFacade: ProductsFacade) {}
+  constructor() {}
 
   onAddToCartClick() {
-    // this.productsFacade.addProductToCart({ productId: this.data.id });
+    this.addToCartEvent.emit(this.data);
   }
 }

@@ -13,6 +13,10 @@
     [nzSpan]="24 / products$?.length"
     *ngFor="let product of products$ | async"
   >
-    <tul-product class="m-auto" [data]="product"></tul-product>
+    <tul-product
+      class="m-auto"
+      [data]="product"
+      (addToCartEvent)="onAddItemEvent(product)"
+    ></tul-product>
   </div>
 </div>

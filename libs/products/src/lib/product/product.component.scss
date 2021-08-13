@@ -1,0 +1,10 @@
+nz-card {
+  margin: auto;
+}
+::ng-deep .ant-card-meta-title {
+  margin-bottom: 0 !important;
+}
+
+.price {
+  font-size: 1.4rem;
+}

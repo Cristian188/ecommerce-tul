@@ -2,16 +2,16 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   ITEMS_FEATURE_KEY,
   State,
-  ItemsPartialState,
-  itemsAdapter,
+  ItemPartialState,
+  itemAdapter,
 } from './items.reducer';
 
-// Lookup the 'Items' feature state managed by NgRx
-export const getItemsState = createFeatureSelector<ItemsPartialState, State>(
+// Lookup the 'Item' feature state managed by NgRx
+export const getItemsState = createFeatureSelector<ItemPartialState, State>(
   ITEMS_FEATURE_KEY
 );
 
-const { selectAll, selectEntities } = itemsAdapter.getSelectors();
+const { selectAll, selectTotal } = itemAdapter.getSelectors();
 
 export const getItemsLoaded = createSelector(
   getItemsState,
@@ -27,17 +27,6 @@ export const getAllItems = createSelector(getItemsState, (state: State) =>
   selectAll(state)
 );
 
-export const getItemsEntities = createSelector(getItemsState, (state: State) =>
-  selectEntities(state)
-);
-
-export const getSelectedId = createSelector(
-  getItemsState,
-  (state: State) => state.selectedId
-);
-
-export const getSelected = createSelector(
-  getItemsEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
+export const getCountItems = createSelector(getItemsState, (state: State) =>
+  selectTotal(state)
 );

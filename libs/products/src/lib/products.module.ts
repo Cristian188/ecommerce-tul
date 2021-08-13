@@ -12,6 +12,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { RouterModule } from '@angular/router';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 const routes = RouterModule.forChild([
   {
@@ -25,6 +26,7 @@ const NZ_MODULES = [
   NzCardModule,
   NzButtonModule,
   NzDividerModule,
+  NzSpaceModule,
 ];
 @NgModule({
   imports: [

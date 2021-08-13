@@ -21,4 +21,10 @@ export class ProductsFacade {
   loadAllProducts() {
     this.store.dispatch(ProductsActions.loadProducts());
   }
+
+  getProductById(productId: string) {
+    return this.store.pipe(
+      select(ProductsSelectors.selectEntity({ id: productId }))
+    );
+  }
 }

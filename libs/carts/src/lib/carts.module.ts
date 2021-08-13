@@ -12,6 +12,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ListComponent } from './list/list.component';
+import { FormsModule } from '@angular/forms';
 
 const routes = RouterModule.forChild([
   {
@@ -30,8 +31,10 @@ const NZ_MODULES = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     StoreModule.forFeature(fromCarts.CARTS_FEATURE_KEY, fromCarts.reducer),
     EffectsModule.forFeature([CartsEffects]),
+    routes,
     ...NZ_MODULES,
   ],
   providers: [CartsFacade],

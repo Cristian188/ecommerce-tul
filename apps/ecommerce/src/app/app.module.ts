@@ -25,8 +25,12 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { nzConfigFactory } from './shared/nz-zorro/global-templates.component';
 import { IconsProviderModule } from './shared/nz-zorro/icons/icons-provider.module';
-import { AuthModule } from '@tul/auth';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from '@tul/auth';
+import { ProductsModule } from '@tul/products';
+import { CartsModule } from '@tul/carts';
+import { ItemsModule } from '@tul/items';
+import { ShowAuthedDirective } from './shared/directives/show-authed';
 registerLocaleData(en);
 
 const NZ_MODULES = [
@@ -38,7 +42,7 @@ const NZ_MODULES = [
   NzImageModule,
 ];
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ShowAuthedDirective],
   imports: [
     ...NZ_MODULES,
     BrowserModule,
@@ -64,6 +68,9 @@ const NZ_MODULES = [
     AngularFireAuthModule,
     AngularFirestoreModule,
     AuthModule,
+    ProductsModule,
+    CartsModule,
+    ItemsModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
