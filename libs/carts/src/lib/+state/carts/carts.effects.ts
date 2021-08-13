@@ -56,7 +56,16 @@ export class CartsEffects {
     () =>
       this.actions$.pipe(
         ofType(CartActions.checkoutCartSuccess),
-        map(() => this.cartService.removeCart())
+        exhaustMap(() => [
+          this.cartService.removeCart(),
+          this.nzNotificationService.success(
+            'Shopping Cart',
+            'Order was created',
+            {
+              nzPlacement: 'topRight',
+            }
+          ),
+        ])
       ),
     { dispatch: false }
   );
